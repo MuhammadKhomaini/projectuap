@@ -7,3 +7,8 @@ class Menu:
         self.root.title("Project UAP")
         self.root.geometry("500x500")
         self.root.resizable(True, True)
+
+if __name__ == "__main__":
+    root = Tk()
+    app = Menu(root)
+    root.mainloop()
