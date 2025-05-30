@@ -8,6 +8,9 @@ class Menu:
         self.root.geometry("500x500")
         self.root.resizable(True, True)
 
+        self.frame_menu = Frame(root, bg="white")
+        self.frame_menu.pack(fill="both", expand=True)
+
 if __name__ == "__main__":
     root = Tk()
     app = Menu(root)
