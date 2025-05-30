@@ -10,6 +10,9 @@ class Menu:
 
         self.frame_menu = Frame(root, bg="white")
         self.frame_menu.pack(fill="both", expand=True)
+        
+        konten_menu = Frame(self.frame_menu, bg="white")
+        konten_menu.pack(expand=True)
 
 if __name__ == "__main__":
     root = Tk()
