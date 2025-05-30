@@ -49,8 +49,33 @@ nama_anggota = [
             Label(f, text=nama, font=("Arial", 10, "bold"), bg="white").pack()
  
         Button(konten_perkenalan, text="Kembali ke Menu", command=self.kembali_menu).pack(pady=10)
+
         Button(konten_perkenalan, text="Lanjut ke Project", command=self.buka_project).pack()
 if __name__ == "__main__":
     root = Tk()
     app = Menu(root)
     root.mainloop()
+
+self.frame_project = Frame(root, bg="white")
+        konten_project = Frame(self.frame_project, bg="white")
+        konten_project.pack(expand=True)
+ 
+        Label(konten_project, text="Project SDA", font=("Rockwell", 20, "bold"), bg="white").pack(pady=30)
+ 
+        Button(konten_project, text="Kembali ke Perkenalan", command=self.kembali_perkenalan).pack(pady=20)
+ 
+    def buka_perkenalan(self):
+        self.frame_menu.pack_forget()
+        self.frame_perkenalan.pack(fill="both", expand=True)
+ 
+    def kembali_menu(self):
+        self.frame_perkenalan.pack_forget()
+        self.frame_menu.pack(fill="both", expand=True)
+ 
+    def buka_project(self):
+        self.frame_perkenalan.pack_forget()
+        self.frame_project.pack(fill="both", expand=True)
+ 
+    def kembali_perkenalan(self):
+        self.frame_project.pack_forget()
+        self.frame_perkenalan.pack(fill="both", expand=True)
