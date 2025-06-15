@@ -47,3 +47,38 @@ def simpan_riwayat():
     with open("riwayat_pertandingan.csv", mode="a", newline='') as file:
         writer = csv.writer(file, delimiter=';')
         if write_header:
+def load_data():
+    global BIRU_score, MERAH_score
+    if os.path.exists("riwayat_pertandingan.csv"):
+        with open("riwayat_pertandingan.csv", mode="r") as file:
+            reader = csv.DictReader(file, delimiter=';')
+            rows = list(reader)
+            if rows:
+                last = rows[-1]
+                try:
+                    BIRU_name_entry.insert(0, last["BIRU"])
+                    MERAH_name_entry.insert(0, last["MERAH"])
+                    juri_entry.insert(0, last["JURI"])
+                    BIRU_score = int(last["SKOR_BIRU"])
+                    MERAH_score = int(last["SKOR_MERAH"])
+                    BIRU_label.config(text=str(BIRU_score))
+                    MERAH_label.config(text=str(MERAH_score))
+                    tampilkan_info()
+                except KeyError:
+                    messagebox.showerror("Error", "Struktur CSV tidak sesuai.\nSilakan hapus atau perbaiki file CSV.")
+
+root = tk.Tk()
+root.title("Scoring Pertandingan")
+root.geometry("600x500")
+root.resizable(False, False)
+
+top_frame = tk.Frame(root)
+top_frame.pack(pady=10)
+
+tk.Label(top_frame, text="BIRU:").grid(row=0, column=0)
+BIRU_name_entry = tk.Entry(top_frame)
+BIRU_name_entry.grid(row=0, column=1, padx=5)
+
+tk.Label(top_frame, text="MERAH:").grid(row=0, column=2)
+MERAH_name_entry = tk.Entry(top_frame)
+MERAH_name_entry.grid(row=0, column=3, padx=5)
