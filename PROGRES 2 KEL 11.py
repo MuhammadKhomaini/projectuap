@@ -75,10 +75,51 @@ root.resizable(False, False)
 top_frame = tk.Frame(root)
 top_frame.pack(pady=10)
 
-tk.Label(top_frame, text="BIRU:").grid(row=0, column=0)
+tk.Label(top_frame, text="BIRU:").grid(row=0, column=0) 
+
 BIRU_name_entry = tk.Entry(top_frame)
 BIRU_name_entry.grid(row=0, column=1, padx=5)
 
 tk.Label(top_frame, text="MERAH:").grid(row=0, column=2)
 MERAH_name_entry = tk.Entry(top_frame)
-MERAH_name_entry.grid(row=0, column=3, padx=5)
+MERAH_name_entry.grid(row=0, column=3, padx=5) 
+tk.Label(top_frame, text="JUMLAH JURI:").grid(row=1, column=0, pady=5)
+juri_entry = tk.Entry(top_frame)
+juri_entry.grid(row=1, column=1, pady=5)
+
+tk.Button(top_frame, text="Tampilkan Info", command=tampilkan_info).grid(row=1, column=3, padx=5)
+
+info_frame = tk.Frame(root)
+info_frame.pack(pady=5)
+BIRU_name_display = tk.Label(info_frame, text="BIRU: -")
+MERAH_name_display = tk.Label(info_frame, text="MERAH: -")
+juri_display = tk.Label(info_frame, text="JUMLAH JURI: -")
+BIRU_name_display.pack()
+MERAH_name_display.pack()
+juri_display.pack()
+
+score_frame = tk.Frame(root)
+score_frame.pack(expand=True, fill="both", padx=20, pady=10)
+
+BIRU = tk.Frame(score_frame, bg="blue")
+BIRU.pack(side="left", expand=True, fill="both", padx=10)
+tk.Label(BIRU, text="BIRU", bg="blue", fg="white", font=("Arial", 20)).pack(pady=5)
+BIRU_label = tk.Label(BIRU, text="0", bg="blue", fg="white", font=("Arial", 40))
+BIRU_label.pack(pady=5)
+tk.Button(BIRU, text="+1", command=lambda: update("BIRU", 1)).pack(pady=2)
+tk.Button(BIRU, text="-1", command=lambda: update("BIRU", -1)).pack(pady=2)
+
+MERAH = tk.Frame(score_frame, bg="red")
+MERAH.pack(side="right", expand=True, fill="both", padx=10)
+tk.Label(MERAH, text="MERAH", bg="red", fg="white", font=("Arial", 20)).pack(pady=5)
+MERAH_label = tk.Label(MERAH, text="0", bg="red", fg="white", font=("Arial", 40))
+MERAH_label.pack(pady=5)
+tk.Button(MERAH, text="+1", command=lambda: update("MERAH", 1)).pack(pady=2)
+tk.Button(MERAH, text="-1", command=lambda: update("MERAH", -1)).pack(pady=2)
+
+tk.Button(root, text="Reset Skor", command=reset).pack(pady=5)
+tk.Button(root, text="Simpan Riwayat", command=simpan_riwayat).pack(pady=5)
+tk.Button(root, text="Hapus Semua Riwayat", bg="red", fg="white", command=hapus_riwayat).pack(pady=5)
+
+load_data()
+root.mainloop()
